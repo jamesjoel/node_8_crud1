@@ -11,5 +11,6 @@ app.use(bodyParser());
 app.use(require("./config/routes"));
 
 app.listen(process.env.PORT || 3000, function(){
+	console.log(process.env.PORT);
 	console.log("Running");
 });
