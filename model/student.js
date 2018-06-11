@@ -2,7 +2,7 @@ var con = require('../config/connect');
 
 module.exports.find=function(cb){
 	con.init(function(err, client){
-		var db = client.db('tss_8');.
+		var db = client.db('tss_8');
 		//db.query("SELELCtg").toArray)()
 		db.collection('student').find().toArray(cb);
 	});
