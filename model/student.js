@@ -14,3 +14,9 @@ module.exports.insert=function(obj, cb){
 		db.collection('student').insert(obj, cb);
 	});
 }
+module.exports.delete=function(obj, cb){
+	con.init(function(err, client){
+		var db = client.db('tss_8');
+		db.collection('student').remove(obj, cb);
+	});
+}

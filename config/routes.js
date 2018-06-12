@@ -5,7 +5,17 @@ router.use("/", require("../controller/home"));
 router.use("/show", require("../controller/show"));
 router.use("/student", require("../controller/student"));
 router.use("/login", require("../controller/login"));
+router.use("/user", userBackdoor, require("../controller/user"));
 
+
+function userBackdoor(req, res, next)
+{
+	// console.log(req.session);
+	if(! req.session.is_user_logged_in)
+		res.redirect("/login");
+	
+	next();
+}
 
 
 module.exports=router;

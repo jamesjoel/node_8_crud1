@@ -4,7 +4,7 @@ var user = require('../model/user');
 
 
 router.get("/", function(req, res){
-	var pagedata = { title : "Login", pagename : "login/index"};
+	var pagedata = { title : "Login", pagename : "login/index", message : req.flash('msg')};
 	res.render("layout", pagedata);
 });
 
@@ -18,7 +18,8 @@ router.post("/", function(req, res){
 		// console.log(result);
 		if(result.length == 0)
 		{
-			console.log("usernamd and password incorect");
+			// console.log("usernamd and password incorect");
+			req.flash("msg", "Username and Password Incorrect");
 			res.redirect("/login");
 		}
 		else
@@ -27,14 +28,16 @@ router.post("/", function(req, res){
 			var data = result[0];
 			if(data.password == req.body.password)
 			{
-				req.session.id = data._id;
+				console.log(data);
+				req.session.uid = data._id;
 				req.session.full_name = data.full_name;
 				req.session.is_user_logged_in = true;
 				res.redirect("/user");
 			}
 			else
 			{
-				console.log(" password incorect");
+				// console.log(" password incorect");
+				req.flash("msg", "Password Incorrect");
 				res.redirect("/login");
 			}
 		}
