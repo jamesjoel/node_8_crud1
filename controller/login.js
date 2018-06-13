@@ -28,7 +28,7 @@ router.post("/", function(req, res){
 			var data = result[0];
 			if(data.password == req.body.password)
 			{
-				console.log(data);
+				// console.log(data);
 				req.session.uid = data._id;
 				req.session.full_name = data.full_name;
 				req.session.is_user_logged_in = true;
