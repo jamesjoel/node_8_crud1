@@ -3,17 +3,18 @@
 	<table class="table table-bordered">
 		<tr>
 			<th>S.No.</th>
-			<th>Name</th>
+			<th>Full Name</th>
+			<th>Username</th>
 			<th>City</th>
-			<th>Age</th>
+			<th>Delete</th>
 		</tr>
 		<% data.forEach(function(x, i){ %>
 			<tr>
 				<td><%= i+1 %></td>
 				<td><%= x.full_name %></td>
-				
+				<td><%= x.username %></td>
 				<td><%= x.city %></td>
-				<td><%= x.age %></td>
+				<td><a href="/user/delete/<%= x._id %>" class="btn btn-danger">Delete</a></td>
 			</tr>
 	<% }) %>
 	</table>

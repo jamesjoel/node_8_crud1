@@ -24,4 +24,19 @@ router.get("/update", function(req, res){
 	});
 });
 
+router.post('/update', function(req, res){
+	// console.log(req.body);
+	var id = req.session.uid;
+	// user.update({ _id : mongo.ObjectId(id)}, { $set : req.body }, function(err, result){
+	user.update({ _id : mongo.ObjectId(id)}, req.body, function(err, result){
+		console.log(result);
+		res.redirect('/user');
+	});
+});
+
+
+router.get("/delete/:id", function(req, res){
+	// console.log(req.query);
+	console.log(req.params);
+});
 module.exports=router;
