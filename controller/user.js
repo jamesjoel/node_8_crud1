@@ -38,5 +38,9 @@ router.post('/update', function(req, res){
 router.get("/delete/:id", function(req, res){
 	// console.log(req.query);
 	console.log(req.params);
+	user.remove({ _id : mongo.ObjectId(req.params.id)}, function(err, result){
+		console.log(result);
+		res.redirect("/show");
+	});
 });
 module.exports=router;
