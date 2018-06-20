@@ -7,7 +7,7 @@ var flash = require('express-flash');
 var cache = require('nocache');
 
 app.set("view engine", "ejs");
-app.set("views", "views");
+app.set("views", ["views", 'admin_view']);
 
 app.use(express.static(__dirname+"/public"));
 app.use(bodyParser());
@@ -17,9 +17,14 @@ app.use(flash());
 
 app.use(function(req, res, next){
 	res.locals.session=req.session;
+	res.locals.logo = "TSS";
 	next();
 });
 
+
+app.get("*", function(req, res){
+	res.send("<h1>Page Not Found</h1>");
+});
 app.use(cache());
 app.use(require("./config/routes"));
 

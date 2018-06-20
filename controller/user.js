@@ -43,4 +43,26 @@ router.get("/delete/:id", function(req, res){
 		res.redirect("/show");
 	});
 });
+
+router.get("/edit/:id", function(req, res){
+	console.log(req.params);
+	var id = req.params.id;
+	user.find({ _id : mongo.ObjectId(id)}, function(err, result){
+		console.log(result);
+		var pagedata = { title : "User", pagename : "user/edit", data : result[0]};
+		res.render("layout", pagedata);
+	});
+});
+
+router.post("/edit", function(req, res){
+	// console.log(req.body);
+	var id = req.body.id;
+	delete req.body.id;
+	// console.log(req.body);
+
+	user.update({ _id : mongo.ObjectId(id)}, req.body, function(err, result){
+		console.log(result);
+		res.redirect('/show');
+	});
+});
 module.exports=router;
