@@ -20,13 +20,18 @@ app.use(function(req, res, next){
 	res.locals.logo = "TSS";
 	next();
 });
+app.use(cache());
+// app.use(require("./config/routes"));
 
-
+app.get("/", function(req, res, next){
+	console.log("ROHIT");
+	next();
+});
 app.get("*", function(req, res){
 	res.send("<h1>Page Not Found</h1>");
 });
-app.use(cache());
-app.use(require("./config/routes"));
+
+
 
 app.listen(process.env.PORT || 3000, function(){
 	console.log(process.env.PORT);

@@ -3,6 +3,8 @@ var router = express.Router();
 
 router.use("/", require("../controller/home"));
 router.use("/show", require("../controller/show"));
+router.use("/cart", require("../controller/cart"));
+router.use("/product", require("../controller/product"));
 router.use("/student", require("../controller/student"));
 router.use("/login", require("../controller/login"));
 router.use("/user", require("../controller/user"));
@@ -11,6 +13,8 @@ router.get("/logout", function(req, res){
 	res.redirect("/");
 });
 
+
+router.use("/admin", require('../controller/admin/dash'));
 
 function userBackdoor(req, res, next)
 {

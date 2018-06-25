@@ -11,6 +11,7 @@ var url = "mongodb://localhost:27017";
 
 
 router.get("/", function(req, res){
+	console.log(req.cookies);
 	var pagedata = { title : "Home", pagename : "home/index"};
 	res.render("layout", pagedata);
 });
