@@ -18,15 +18,19 @@ app.use(flash());
 app.use(function(req, res, next){
 	res.locals.session=req.session;
 	res.locals.logo = "TSS";
+	var total = 0;
+	if(req.cookies.pid)
+	{
+		var pidstr = req.cookies.pid;
+		var arr = pidstr.split("#");
+		total = arr.length;
+	}
+	res.locals.total = total;
 	next();
 });
 app.use(cache());
-// app.use(require("./config/routes"));
+app.use(require("./config/routes"));
 
-app.get("/", function(req, res, next){
-	console.log("ROHIT");
-	next();
-});
 app.get("*", function(req, res){
 	res.send("<h1>Page Not Found</h1>");
 });
